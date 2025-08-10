@@ -27,4 +27,5 @@ public class Books {
 
     @Column(name = "Quantity", nullable = false)
     private int quantity;
+
 }

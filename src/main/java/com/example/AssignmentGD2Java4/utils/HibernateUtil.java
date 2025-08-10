@@ -2,6 +2,7 @@ package com.example.AssignmentGD2Java4.utils;
 
 
 import com.example.AssignmentGD2Java4.models.Books;
+import com.example.AssignmentGD2Java4.models.BorrowRequests;
 import com.example.AssignmentGD2Java4.models.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,6 +30,7 @@ public final class HibernateUtil {
         conf.setProperties(properties);
         conf.addAnnotatedClass(Users.class);
         conf.addAnnotatedClass(Books.class);
+        conf.addAnnotatedClass(BorrowRequests.class);
 
 //        conf.addAnnotatedClass(Orders.class);
 

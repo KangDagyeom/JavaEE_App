@@ -37,4 +37,8 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    public Users findById(Integer id) {
+        return session.find(Users.class, id);
+    }
 }

@@ -25,4 +25,11 @@ public class BookDAO {
                 .setParameter("keyword", keyFormat)
                 .list();
     }
+
+    public Books findById(Integer id) {
+        return session.createQuery(
+                "from Books b where b.id = :id", Books.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }

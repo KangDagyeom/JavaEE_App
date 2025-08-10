@@ -42,6 +42,21 @@
                         <td>${book.title}</td>
                         <td>${book.author}</td>
                         <td>${book.quantity}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${book.quantity <= 0}">
+                                    <button class="btn btn-secondary">Hết sách</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <form action="/th04416/borrow" method="post">
+                                        <input type="hidden" name="id" value="${book.id}"/>
+                                        <button type="submit" class="btn btn-primary">Mượn</button>
+                                    </form>
+
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
                     </tr>
                 </c:forEach>
             </c:when>
