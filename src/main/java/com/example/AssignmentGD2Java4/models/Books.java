@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,5 +28,6 @@ public class Books {
 
     @Column(name = "Quantity", nullable = false)
     private int quantity;
-
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BorrowRequests> borrowRequests;
 }

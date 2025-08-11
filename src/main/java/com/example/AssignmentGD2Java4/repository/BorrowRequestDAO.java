@@ -30,4 +30,23 @@ public class BorrowRequestDAO {
     public List<BorrowRequests> findAllRequestByUserId(Integer id) {
         return session.createQuery("from BorrowRequests b where b.user.id = :id", BorrowRequests.class).setParameter("id", id).list();
     }
+
+    public List<BorrowRequests> getListOfBorrow() {
+        try (Session session = HibernateUtil.getFactory().openSession()) {
+            return session.createQuery("from BorrowRequests br join fetch br.user join fetch br.book", BorrowRequests.class)
+                    .list();
+        }
+    }
+
+
+    public void updateRequestsStatus(Integer id, BorrowRequests.RequestStatus status) {
+        try {
+            session.beginTransaction();
+            session.createQuery("update BorrowRequests b set b.status = :status where b.id = :id").setParameter("id", id).setParameter("status", status).executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

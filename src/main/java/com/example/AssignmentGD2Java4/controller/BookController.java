@@ -32,8 +32,7 @@ public class BookController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
-
-        if ("/dashboard".equals(path)) {
+        if ("/dashboard".equals(path) || "/books".equals(path)) {
             String keyword = req.getParameter("keyword");
             if (keyword != null && !keyword.trim().isEmpty()) {
                 req.setAttribute("books", bookDAO.findByNameOrAuthor(keyword.trim()));
@@ -42,7 +41,6 @@ public class BookController extends HttpServlet {
             }
             req.setAttribute("user", currentUser);
             req.getRequestDispatcher("/views/dashboard.jsp").forward(req, resp);
-
         } else if ("/borrow".equals(path)) {
             req.setAttribute("borrowRequests", borrowRequestDAO.findAllRequestByUserId(currentUser.getId()));
             req.getRequestDispatcher("/views/borrowRequest.jsp").forward(req, resp);

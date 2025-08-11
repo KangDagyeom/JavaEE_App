@@ -11,7 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
-@WebServlet(value = {"/register", "/login"})
+@WebServlet(value = {"/register", "/login", "/dang-xuat"})
 public class UserController extends HttpServlet {
     UserDAO userDAO = new UserDAO();
 
@@ -24,6 +24,10 @@ public class UserController extends HttpServlet {
             req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
         } else if ("/login".equals(path)) {
             req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+        } else if ("/dang-xuat".equals(path)) {
+            // Hoac dung req.getSession().invalidate();
+            req.getSession().removeAttribute("currentUser");
+            resp.sendRedirect("/th04416/login");
         }
     }
 
